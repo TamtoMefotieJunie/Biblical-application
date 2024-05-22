@@ -18,7 +18,10 @@
             android:name=".activity_home"
             android:exported="true" />
         <activity
-            android:name="ProverbContributionActivity"
+            android:name=".ProverbContributionActivity"
+            android:exported="true" />
+        <activity
+            android:name="LandingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
