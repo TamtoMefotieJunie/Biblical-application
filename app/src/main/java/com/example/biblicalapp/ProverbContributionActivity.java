@@ -70,7 +70,7 @@ public class ProverbContributionActivity extends AppCompatActivity {
         progressDialog.setTitle("adding proverb");
         progressDialog.show();
 
-        String url = "http://192.168.198.157/biblicapp/process.php/contribution";
+        String url = Constants.API_URL + "/contribution";
 
         try {
             JSONObject postData = new JSONObject();

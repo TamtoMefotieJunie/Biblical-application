@@ -18,10 +18,17 @@
             android:name=".activity_home"
             android:exported="true" />
         <activity
-            android:name=".ProverbContributionActivity"
+        android:name=".CategoryActivity"
+        android:exported="true" />
+        <activity
+            android:name=".ProverbListActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".LandingActivity"
             android:exported="true" />
         <activity
-            android:name="LandingActivity"
+            android:name="ProverbContributionActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,8 +42,8 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-        <activity
-            android:name=".CategoryActivity"
-            android:exported="true" />
+<!--        <activity-->
+<!--            android:name=".CategoryActivity"-->
+<!--            android:exported="true" />-->
     </application>
 </manifest>

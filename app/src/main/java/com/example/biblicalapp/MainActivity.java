@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.setTitle("Signing up");
         progressDialog.show();
 
-        String url = "http://192.168.198.157/biblicapp/process.php/register";
+        String url = Constants.API_URL+ "/register";
         try {
             JSONObject postData = new JSONObject();
             postData.put("usernameEditText", usernameEditText);

@@ -5,7 +5,8 @@
     android:id="@+id/category"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="#F5FFFF"
+    tools:context=".CategoryActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -15,21 +16,22 @@
         android:layout_marginTop="60dp"
         android:layout_marginLeft="20dp"
         android:textColor="#4CBB17"
-        android:gravity="center"/>
+        android:gravity="center" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="660dp"
         android:layout_centerInParent="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="150dp"
         android:padding="10dp"
-        android:layout_alignParentBottom="true"
-        >
+        android:id="@+id/categoriesScrollView"
+        android:layout_alignParentBottom="true">
 
         <LinearLayout
-            android:layout_width="500dp"
             android:id="@+id/categoriesLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
             android:orientation="vertical" />
     </ScrollView>
 
@@ -41,8 +43,6 @@
         android:layout_marginTop="100dp"
         android:layout_marginEnd="5dp"
         android:textSize="15dp"
-        android:text="proverb contribution"
-       />
-
+        android:text="proverb contribution" />
 
 </RelativeLayout>

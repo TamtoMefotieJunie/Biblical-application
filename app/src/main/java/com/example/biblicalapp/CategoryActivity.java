@@ -1,49 +1,35 @@
 package com.example.biblicalapp;
 
-import android.app.ProgressDialog;
-import android.os.Bundle;
-
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import android.view.View;
 import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
-import com.android.volley.RequestQueue;
-import com.android.volley.Request;
-import org.json.JSONArray;
-import org.json.JSONException;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CategoryActivity extends AppCompatActivity {
 
-    private static final String TAG = "CategoryActivity";
-    private VolleyService volleyService;
-    public Button button;
     private LinearLayout categoriesLayout;
-    private RequestQueue requestQueue;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_category);
+
         categoriesLayout = findViewById(R.id.categoriesLayout);
-        requestQueue = Volley.newRequestQueue(this);
-        fetchCategories();
+        button = findViewById(R.id.contributeProverb);
 
+        // Display categories
+        displayCategories();
 
-        //proverb contribution
-        button = (Button) findViewById(R.id.contributeProverb);
-
+        // Proverb contribution button setup
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,50 +39,29 @@ public class CategoryActivity extends AppCompatActivity {
         });
     }
 
-        private void fetchCategories() {
-            String url = "http://192.168.228.157/biblicapp/category";
+    private void displayCategories() {
+        ArrayList<String> categories = new ArrayList<>(Arrays.asList(
+                "Wisdom and Knowledge", "Righteousness and Justice", "Love and Compassion", "Faith and Hope",
+                "Courage and Strength","Humility and pride","wealth and poverty","friendship and relationship",
+                "Anger and patience","speech and silence","Forgiveness and Mercy","Gratitude and Contentment"
+        ));
 
-            ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setMessage("Fetching Categories...");
-            progressDialog.show();
+        for (String category : categories) {
+            TextView categoryView = new TextView(this);
+            categoryView.setText(category);
+            categoryView.setTextSize(25);
+            categoryView.setPadding(10, 30, 10, 10);
 
-            JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                    new Response.Listener<JSONArray>() {
-                        @Override
-                        public void onResponse(JSONArray response) {
-                            progressDialog.dismiss();
-                            try {
-                                ArrayList<String> categories = new ArrayList<>();
-                                for (int i = 0; i < response.length(); i++) {
-                                    categories.add(response.getString(i));
-                                }
-                                displayCategories(categories);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                Toast.makeText(CategoryActivity.this, "Error parsing categories", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            progressDialog.dismiss();
-                            Toast.makeText(CategoryActivity.this, "Error fetching categories", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-            requestQueue.add(jsonArrayRequest);
+            categoryView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Navigate to ProverbListActivity and pass the selected category
+                    Intent intent = new Intent(CategoryActivity.this, ProverbListActivity.class);
+                    intent.putExtra("category", category);
+                    startActivity(intent);
+                }
+            });
+            categoriesLayout.addView(categoryView);
         }
-        
-
-        private void displayCategories(ArrayList<String> categories) {
-            for (String category : categories) {
-                TextView textView = new TextView(this);
-                textView.setText(category);
-                textView.setTextSize(20);
-                categoriesLayout.addView(textView);
-            }
-        }
-
-
+    }
 }

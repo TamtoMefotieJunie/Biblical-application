@@ -5,6 +5,7 @@
     android:id="@+id/proverb"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#DDFDFF"
     tools:context=".MainActivity">
 
     <TextView
@@ -19,18 +20,17 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="660dp"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="80dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="90dp"
         android:padding="10dp"
-        android:layout_alignParentBottom="true"
         >
 
         <LinearLayout
-            android:layout_width="500dp"
-
+            android:id="@+id/proverbsLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            android:padding="16dp" />
     </ScrollView>
 
 

@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setTitle("Signing in");
         progressDialog.show();
 
-        String url = "http://192.168.198.157/biblicapp/process.php/login";
+        String url = Constants.API_URL + "/login";
         try {
             JSONObject postData = new JSONObject();
 
